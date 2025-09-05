@@ -23,6 +23,11 @@ HEADERS = {
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def health_check():
+    """Simple endpoint to show backend is running."""
+    return jsonify({"status": "Backend is running"}), 200
+
 def call_hf_inference(payload: Dict[str, Any]) -> Dict[str, Any]:
     """
     Send a POST request to Hugging Face Inference API and return parsed JSON.
